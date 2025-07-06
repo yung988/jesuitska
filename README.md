@@ -6,8 +6,9 @@ Monorepo projekt pro správu penzionu obsahující backend (Strapi) a frontend (
 
 ```
 jesuitska/
-├── penzion-backend/        # Strapi backend
-├── pension-jesuitska-new/  # Next.js frontend
+├── backend/                # Strapi backend
+├── frontend/               # Next.js frontend
+├── admin/                  # Admin dashboard
 ├── start-all.sh           # Script pro spuštění celé aplikace
 └── README.md
 ```
@@ -16,7 +17,7 @@ jesuitska/
 
 ### Požadavky
 - Node.js 18+ 
-- npm nebo pnpm
+- pnpm
 - Git
 
 ### Instalace
@@ -29,14 +30,20 @@ cd jesuitska
 
 2. Nainstalujte závislosti pro backend:
 ```bash
-cd penzion-backend
-npm install
+cd backend
+pnpm install
 ```
 
 3. Nainstalujte závislosti pro frontend:
 ```bash
-cd ../pension-jesuitska-new
-npm install
+cd ../frontend
+pnpm install
+```
+
+4. Nainstalujte závislosti pro admin:
+```bash
+cd ../admin
+pnpm install
 ```
 
 ### Spuštění aplikace
@@ -50,20 +57,27 @@ Nebo spusťte jednotlivé části:
 
 **Backend:**
 ```bash
-cd penzion-backend
-npm run develop
+cd backend
+pnpm run develop
 ```
 
 **Frontend:**
 ```bash
-cd pension-jesuitska-new
-npm run dev
+cd frontend
+pnpm run dev
+```
+
+**Admin:**
+```bash
+cd admin
+pnpm run dev
 ```
 
 ## 📍 URL adresy
 
 - **Frontend**: http://localhost:3000
 - **Backend Admin**: http://localhost:1337/admin
+- **Admin Dashboard**: http://localhost:3001
 - **API**: http://localhost:1337/api
 
 ## 🔧 Konfigurace
