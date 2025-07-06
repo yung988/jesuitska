@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "concierge_requests",
+  "info": {
+    "singularName": "concierge-request",
+    "pluralName": "concierge-requests",
+    "displayName": "Concierge Request",
+    "description": "Concierge požadavky"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guest_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "room": {
+      "type": "string",
+      "required": true,
+      "description": "Číslo pokoje"
+    },
+    "request_title": {
+      "type": "string",
+      "required": true,
+      "description": "Název požadavku"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis požadavku"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["high", "medium", "low"],
+      "default": "medium",
+      "description": "Priorita"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "in-progress", "completed", "cancelled"],
+      "default": "pending",
+      "description": "Status"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Přiřazeno komu"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["dining", "transport", "tourism", "other"],
+      "default": "other",
+      "description": "Kategorie"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}

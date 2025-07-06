@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wine_cellars",
+  "info": {
+    "singularName": "wine-cellar",
+    "pluralName": "wine-cellars",
+    "displayName": "Wine Cellar",
+    "description": "Vinný sklípek"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název sklípku"
+    },
+    "capacity": {
+      "type": "integer",
+      "required": true,
+      "description": "Kapacita osob"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis"
+    },
+    "available_times": {
+      "type": "json",
+      "description": "Dostupné časy"
+    },
+    "price_per_hour": {
+      "type": "decimal",
+      "description": "Cena za hodinu"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Je sklíp dostupný?"
+    }
+  }
+}

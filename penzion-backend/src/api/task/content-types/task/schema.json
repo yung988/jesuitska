@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "Task",
+    "description": "Úkoly pro personál"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Název úkolu"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis úkolu"
+    },
+    "assignee": {
+      "type": "string",
+      "required": true,
+      "description": "Přiřazeno komu"
+    },
+    "room": {
+      "type": "string",
+      "description": "Číslo pokoje / místo"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["high", "medium", "low"],
+      "default": "medium",
+      "description": "Priorita"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["in-progress", "pending", "completed", "paused"],
+      "default": "pending",
+      "description": "Status úkolu"
+    },
+    "due_time": {
+      "type": "datetime",
+      "required": true,
+      "description": "Termín dokončení"
+    },
+    "estimated_time": {
+      "type": "string",
+      "description": "Odhadovaný čas"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategorie úkolu"
+    },
+    "completed_at": {
+      "type": "datetime",
+      "description": "Čas dokončení"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}

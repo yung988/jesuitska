@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rooms",
+  "info": {
+    "singularName": "room",
+    "pluralName": "rooms",
+    "displayName": "Room",
+    "description": "Pokoje v penzionu"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "room_number": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "Číslo pokoje (např. Pokoj 1, Pokoj 2)"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název pokoje (např. Dvoulůžkový s balkónem)"
+    },
+    "description": {
+      "type": "richtext",
+      "description": "Popis pokoje"
+    },
+    "price_per_night": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "description": "Cena za noc"
+    },
+    "capacity": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "description": "Maximální počet osob"
+    },
+    "amenities": {
+      "type": "json",
+      "description": "Vybavení pokoje (WiFi, Balkón, Vlastní koupelna)"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "floor": {
+      "type": "integer",
+      "description": "Patro"
+    },
+    "available": {
+      "type": "boolean",
+      "default": true,
+      "description": "Je pokoj k dispozici?"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Interní poznámky"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "room"
+    }
+  }
+}

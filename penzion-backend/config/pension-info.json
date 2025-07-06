@@ -1,0 +1,72 @@
+{
+  "name": "Pension Jesuitská",
+  "address": "Jesuitská 5/183, 669 02 Znojmo",
+  "phone": "+420 603 830 130",
+  "phone2": "+420 515 224 496",
+  "email": "info@jesuitska.cz",
+  "website": "http://www.jesuitska.cz",
+  "description": "Výjimečně hodnocené ubytovací zařízení v historickém centru Znojma s celkovým hodnocením 8,8/10. Pension byl otevřen v roce 1994 po důkladné rekonstrukci historické budovy ve středověkém centru Znojma.",
+  "checkInTime": "13:00 - 19:00",
+  "checkOutTime": "08:00 - 11:00",
+  "amenities": [
+    "Bezplatné parkování",
+    "Bezplatné Wi-Fi",
+    "Rodinné pokoje",
+    "Nekuřácké pokoje",
+    "Kávovar/čajník na všech pokojích",
+    "Snídaně formou bufetu",
+    "Terasa",
+    "Vlastní malá vinotéka",
+    "Půjčení a úschova kol"
+  ],
+  "languages": [
+    "Čeština",
+    "Němčina",
+    "Angličtina",
+    "Slovenština"
+  ],
+  "policies": {
+    "smoking": "Kouření zakázáno",
+    "pets": "Domácí mazlíčci povoleni na vyžádání (mohou se účtovat poplatky)",
+    "parties": "Párty/akce nejsou povoleny",
+    "children": "Děti všech věků jsou vítány",
+    "childBed": "Dětská postýlka na vyžádání: 10 € za dítě za noc (0-3 roky)",
+    "payment": "Pouze hotovost"
+  },
+  "nearbyAttractions": [
+    {
+      "name": "Znojemský hrad",
+      "distance": "5 min pěšky"
+    },
+    {
+      "name": "Znojemské podzemí",
+      "distance": "7 min pěšky"
+    },
+    {
+      "name": "Vyhlídková radniční věž",
+      "distance": "5 min pěšky"
+    },
+    {
+      "name": "Rotunda Panny Marie a sv. Kateřiny",
+      "distance": "10 min pěšky"
+    },
+    {
+      "name": "Kostel sv. Michala",
+      "distance": "přímo u penzionu"
+    },
+    {
+      "name": "Kaňon řeky Dyje",
+      "distance": "5 min pěšky"
+    },
+    {
+      "name": "Národní park Podyjí",
+      "distance": "5 min pěšky"
+    }
+  ],
+  "ratings": {
+    "overall": 8.8,
+    "staff": 9.8,
+    "facilities": 8.4,
+    "location": 9.7
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wine_cellar_bookings",
+  "info": {
+    "singularName": "wine-cellar-booking",
+    "pluralName": "wine-cellar-bookings",
+    "displayName": "Wine Cellar Booking",
+    "description": "Rezervace vinného sklípku"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guest_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "description": "Email hosta"
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "description": "Telefon hosta"
+    },
+    "date": {
+      "type": "date",
+      "required": true,
+      "description": "Datum rezervace"
+    },
+    "time_from": {
+      "type": "time",
+      "required": true,
+      "description": "Čas od"
+    },
+    "time_to": {
+      "type": "time",
+      "required": true,
+      "description": "Čas do"
+    },
+    "guests": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "description": "Počet hostů"
+    },
+    "total_price": {
+      "type": "decimal",
+      "description": "Celková cena"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "confirmed", "cancelled"],
+      "default": "pending",
+      "description": "Status rezervace"
+    },
+    "message": {
+      "type": "text",
+      "description": "Zpráva od hosta"
+    },
+    "wine_cellar": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wine-cellar.wine-cellar"
+    },
+    "booking": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::booking.booking",
+      "description": "Propojení s rezervací pokoje"
+    }
+  }
+}

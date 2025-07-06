@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employees",
+  "info": {
+    "singularName": "employee",
+    "pluralName": "employees",
+    "displayName": "Employee",
+    "description": "Zaměstnanci"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno"
+    },
+    "last_name": {
+      "type": "string",
+      "required": true,
+      "description": "Příjmení"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true,
+      "description": "Email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "description": "Pozice"
+    },
+    "department": {
+      "type": "string",
+      "description": "Oddělení"
+    },
+    "hire_date": {
+      "type": "date",
+      "description": "Datum nástupu"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "on_leave", "inactive"],
+      "default": "active",
+      "description": "Status"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}

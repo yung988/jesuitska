@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stock_items",
+  "info": {
+    "singularName": "stock-item",
+    "pluralName": "stock-items",
+    "displayName": "Stock Item",
+    "description": "Skladové položky"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název položky"
+    },
+    "category": {
+      "type": "string",
+      "required": true,
+      "description": "Kategorie"
+    },
+    "current_stock": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "description": "Aktuální zásoba"
+    },
+    "min_stock": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "description": "Minimální zásoba"
+    },
+    "max_stock": {
+      "type": "integer",
+      "required": true,
+      "default": 100,
+      "description": "Maximální zásoba"
+    },
+    "unit": {
+      "type": "string",
+      "required": true,
+      "description": "Jednotka (ks, kg, l, balení, atd.)"
+    },
+    "location": {
+      "type": "string",
+      "description": "Umístění ve skladu"
+    },
+    "last_restocked": {
+      "type": "date",
+      "description": "Poslední doplnění"
+    },
+    "supplier": {
+      "type": "string",
+      "description": "Dodavatel"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["good", "low", "critical", "overstock"],
+      "default": "good",
+      "description": "Status"
+    },
+    "price_per_unit": {
+      "type": "decimal",
+      "description": "Cena za jednotku"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}

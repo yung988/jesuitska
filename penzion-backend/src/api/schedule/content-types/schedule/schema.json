@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "schedules",
+  "info": {
+    "singularName": "schedule",
+    "pluralName": "schedules",
+    "displayName": "Schedule",
+    "description": "Rozvrh směn"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "employee_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno zaměstnance"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "description": "Role/pozice"
+    },
+    "shift_start": {
+      "type": "datetime",
+      "required": true,
+      "description": "Začátek směny"
+    },
+    "shift_end": {
+      "type": "datetime",
+      "required": true,
+      "description": "Konec směny"
+    },
+    "date": {
+      "type": "date",
+      "required": true,
+      "description": "Datum směny"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "scheduled", "completed", "absent"],
+      "default": "scheduled",
+      "description": "Status"
+    },
+    "tasks": {
+      "type": "json",
+      "description": "Seznam úkolů pro směnu"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}

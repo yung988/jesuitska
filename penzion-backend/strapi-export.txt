@@ -1,0 +1,911 @@
+=== STRAPI PROJECT STRUCTURE ===
+
+## Project Structure:
+src/admin/tsconfig.json
+src/index.js
+src/api/stock-item/content-types/stock-item/schema.json
+src/api/stock-item/controllers/stock-item.js
+src/api/stock-item/routes/stock-item.js
+src/api/stock-item/services/stock-item.js
+src/api/schedule/content-types/schedule/schema.json
+src/api/schedule/controllers/schedule.js
+src/api/schedule/routes/schedule.js
+src/api/schedule/services/schedule.js
+src/api/room/content-types/room/schema.json
+src/api/room/controllers/room.js
+src/api/room/routes/room.js
+src/api/room/routes/custom-room.js
+src/api/room/services/room.js
+src/api/concierge-service/content-types/concierge-service/schema.json
+src/api/concierge-service/controllers/concierge-service.js
+src/api/concierge-service/routes/concierge-service.js
+src/api/concierge-service/services/concierge-service.js
+src/api/booking/content-types/booking/lifecycles.js
+src/api/booking/content-types/booking/schema.json
+src/api/booking/controllers/booking.js
+src/api/booking/routes/booking.js
+src/api/booking/routes/custom-booking.js
+src/api/booking/services/booking.js
+src/api/wine-cellar/content-types/wine-cellar/schema.json
+src/api/wine-cellar/controllers/wine-cellar.js
+src/api/wine-cellar/routes/wine-cellar.js
+src/api/wine-cellar/services/wine-cellar.js
+src/api/concierge-request/content-types/concierge-request/schema.json
+src/api/concierge-request/controllers/concierge-request.js
+src/api/concierge-request/routes/concierge-request.js
+src/api/concierge-request/services/concierge-request.js
+src/api/guest/content-types/guest/schema.json
+src/api/guest/controllers/guest.js
+src/api/guest/routes/guest.js
+src/api/guest/services/guest.js
+src/api/task/content-types/task/schema.json
+src/api/task/controllers/task.js
+src/api/task/routes/task.js
+src/api/task/services/task.js
+src/api/wine-cellar-booking/content-types/wine-cellar-booking/schema.json
+src/api/wine-cellar-booking/controllers/wine-cellar-booking.js
+src/api/wine-cellar-booking/routes/wine-cellar-booking.js
+src/api/wine-cellar-booking/services/wine-cellar-booking.js
+src/api/lost-found-item/content-types/lost-found-item/schema.json
+src/api/lost-found-item/controllers/lost-found-item.js
+src/api/lost-found-item/routes/lost-found-item.js
+src/api/lost-found-item/services/lost-found-item.js
+src/api/setting/content-types/setting/schema.json
+
+## Content Types Schemas:
+=== src/api/stock-item/content-types/stock-item/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "stock_items",
+  "info": {
+    "singularName": "stock-item",
+    "pluralName": "stock-items",
+    "displayName": "Stock Item",
+    "description": "Skladové položky"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název položky"
+    },
+    "category": {
+      "type": "string",
+      "required": true,
+      "description": "Kategorie"
+    },
+    "current_stock": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "description": "Aktuální zásoba"
+    },
+    "min_stock": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "description": "Minimální zásoba"
+    },
+    "max_stock": {
+      "type": "integer",
+      "required": true,
+      "default": 100,
+      "description": "Maximální zásoba"
+    },
+    "unit": {
+      "type": "string",
+      "required": true,
+      "description": "Jednotka (ks, kg, l, balení, atd.)"
+    },
+    "location": {
+      "type": "string",
+      "description": "Umístění ve skladu"
+    },
+    "last_restocked": {
+      "type": "date",
+      "description": "Poslední doplnění"
+    },
+    "supplier": {
+      "type": "string",
+      "description": "Dodavatel"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["good", "low", "critical", "overstock"],
+      "default": "good",
+      "description": "Status"
+    },
+    "price_per_unit": {
+      "type": "decimal",
+      "description": "Cena za jednotku"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}
+=== src/api/schedule/content-types/schedule/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "schedules",
+  "info": {
+    "singularName": "schedule",
+    "pluralName": "schedules",
+    "displayName": "Schedule",
+    "description": "Rozvrh směn"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "employee_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno zaměstnance"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "description": "Role/pozice"
+    },
+    "shift_start": {
+      "type": "datetime",
+      "required": true,
+      "description": "Začátek směny"
+    },
+    "shift_end": {
+      "type": "datetime",
+      "required": true,
+      "description": "Konec směny"
+    },
+    "date": {
+      "type": "date",
+      "required": true,
+      "description": "Datum směny"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "scheduled", "completed", "absent"],
+      "default": "scheduled",
+      "description": "Status"
+    },
+    "tasks": {
+      "type": "json",
+      "description": "Seznam úkolů pro směnu"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}
+=== src/api/room/content-types/room/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "rooms",
+  "info": {
+    "singularName": "room",
+    "pluralName": "rooms",
+    "displayName": "Room",
+    "description": "Pokoje v penzionu"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "room_number": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "Číslo pokoje (např. Pokoj 1, Pokoj 2)"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název pokoje (např. Dvoulůžkový s balkónem)"
+    },
+    "description": {
+      "type": "richtext",
+      "description": "Popis pokoje"
+    },
+    "price_per_night": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "description": "Cena za noc"
+    },
+    "capacity": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "description": "Maximální počet osob"
+    },
+    "amenities": {
+      "type": "json",
+      "description": "Vybavení pokoje (WiFi, Balkón, Vlastní koupelna)"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "floor": {
+      "type": "integer",
+      "description": "Patro"
+    },
+    "available": {
+      "type": "boolean",
+      "default": true,
+      "description": "Je pokoj k dispozici?"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Interní poznámky"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "room"
+    }
+  }
+}
+=== src/api/concierge-service/content-types/concierge-service/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "concierge_services",
+  "info": {
+    "singularName": "concierge-service",
+    "pluralName": "concierge-services",
+    "displayName": "Concierge Service",
+    "description": "Doporučené služby"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název služby"
+    },
+    "category": {
+      "type": "string",
+      "required": true,
+      "description": "Kategorie"
+    },
+    "rating": {
+      "type": "decimal",
+      "description": "Hodnocení"
+    },
+    "distance": {
+      "type": "string",
+      "description": "Vzdálenost"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis"
+    }
+  }
+}
+=== src/api/booking/content-types/booking/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "singularName": "booking",
+    "pluralName": "bookings",
+    "displayName": "Booking",
+    "description": "Rezervace pokojů"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "booking_id": {
+      "type": "string",
+      "unique": true,
+      "description": "Automaticky generované ID rezervace (BK001, BK002...)"
+    },
+    "guest_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "description": "Email hosta"
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "description": "Telefon hosta"
+    },
+    "check_in": {
+      "type": "date",
+      "required": true,
+      "description": "Datum příjezdu"
+    },
+    "check_out": {
+      "type": "date",
+      "required": true,
+      "description": "Datum odjezdu"
+    },
+    "guests": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "description": "Počet hostů"
+    },
+    "total_price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "description": "Celková cena"
+    },
+    "paid_amount": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "description": "Zaplacená částka"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "confirmed", "checked-in", "checked-out", "cancelled"],
+      "default": "pending",
+      "description": "Status rezervace"
+    },
+    "payment_status": {
+      "type": "enumeration",
+      "enum": ["paid", "pending", "partial", "refunded"],
+      "default": "pending",
+      "description": "Status platby"
+    },
+    "source": {
+      "type": "string",
+      "description": "Zdroj rezervace (Booking.com, Airbnb, Přímá rezervace, atd.)"
+    },
+    "room": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::room.room",
+      "inversedBy": "bookings"
+    },
+    "message": {
+      "type": "text",
+      "description": "Zpráva od hosta"
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": ["cash", "card", "bank_transfer", "online"],
+      "description": "Způsob platby"
+    },
+    "created_by_admin": {
+      "type": "boolean",
+      "default": false,
+      "description": "Vytvořeno adminem?"
+    },
+    "special_requests": {
+      "type": "text",
+      "description": "Speciální požadavky"
+    },
+    "guest": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guest.guest",
+      "inversedBy": "bookings"
+    }
+  }
+}
+=== src/api/wine-cellar/content-types/wine-cellar/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "wine_cellars",
+  "info": {
+    "singularName": "wine-cellar",
+    "pluralName": "wine-cellars",
+    "displayName": "Wine Cellar",
+    "description": "Vinný sklípek"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název sklípku"
+    },
+    "capacity": {
+      "type": "integer",
+      "required": true,
+      "description": "Kapacita osob"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis"
+    },
+    "available_times": {
+      "type": "json",
+      "description": "Dostupné časy"
+    },
+    "price_per_hour": {
+      "type": "decimal",
+      "description": "Cena za hodinu"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Je sklíp dostupný?"
+    }
+  }
+}
+=== src/api/concierge-request/content-types/concierge-request/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "concierge_requests",
+  "info": {
+    "singularName": "concierge-request",
+    "pluralName": "concierge-requests",
+    "displayName": "Concierge Request",
+    "description": "Concierge požadavky"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guest_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "room": {
+      "type": "string",
+      "required": true,
+      "description": "Číslo pokoje"
+    },
+    "request_title": {
+      "type": "string",
+      "required": true,
+      "description": "Název požadavku"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis požadavku"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["high", "medium", "low"],
+      "default": "medium",
+      "description": "Priorita"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "in-progress", "completed", "cancelled"],
+      "default": "pending",
+      "description": "Status"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Přiřazeno komu"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["dining", "transport", "tourism", "other"],
+      "default": "other",
+      "description": "Kategorie"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}
+=== src/api/guest/content-types/guest/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "guests",
+  "info": {
+    "singularName": "guest",
+    "pluralName": "guests",
+    "displayName": "Guest",
+    "description": "Hosté penzionu"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true,
+      "description": "Email hosta"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon hosta"
+    },
+    "address": {
+      "type": "text",
+      "description": "Adresa hosta"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky - preference, alergie apod."
+    },
+    "total_stays": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "description": "Celkový počet pobytů"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "guest"
+    }
+  }
+}
+=== src/api/task/content-types/task/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "Task",
+    "description": "Úkoly pro personál"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Název úkolu"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis úkolu"
+    },
+    "assignee": {
+      "type": "string",
+      "required": true,
+      "description": "Přiřazeno komu"
+    },
+    "room": {
+      "type": "string",
+      "description": "Číslo pokoje / místo"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["high", "medium", "low"],
+      "default": "medium",
+      "description": "Priorita"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["in-progress", "pending", "completed", "paused"],
+      "default": "pending",
+      "description": "Status úkolu"
+    },
+    "due_time": {
+      "type": "datetime",
+      "required": true,
+      "description": "Termín dokončení"
+    },
+    "estimated_time": {
+      "type": "string",
+      "description": "Odhadovaný čas"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategorie úkolu"
+    },
+    "completed_at": {
+      "type": "datetime",
+      "description": "Čas dokončení"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}
+=== src/api/wine-cellar-booking/content-types/wine-cellar-booking/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "wine_cellar_bookings",
+  "info": {
+    "singularName": "wine-cellar-booking",
+    "pluralName": "wine-cellar-bookings",
+    "displayName": "Wine Cellar Booking",
+    "description": "Rezervace vinného sklípku"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "guest_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "description": "Email hosta"
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "description": "Telefon hosta"
+    },
+    "date": {
+      "type": "date",
+      "required": true,
+      "description": "Datum rezervace"
+    },
+    "time_from": {
+      "type": "time",
+      "required": true,
+      "description": "Čas od"
+    },
+    "time_to": {
+      "type": "time",
+      "required": true,
+      "description": "Čas do"
+    },
+    "guests": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "description": "Počet hostů"
+    },
+    "total_price": {
+      "type": "decimal",
+      "description": "Celková cena"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "confirmed", "cancelled"],
+      "default": "pending",
+      "description": "Status rezervace"
+    },
+    "message": {
+      "type": "text",
+      "description": "Zpráva od hosta"
+    },
+    "wine_cellar": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wine-cellar.wine-cellar"
+    },
+    "booking": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::booking.booking",
+      "description": "Propojení s rezervací pokoje"
+    }
+  }
+}
+=== src/api/lost-found-item/content-types/lost-found-item/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "lost_found_items",
+  "info": {
+    "singularName": "lost-found-item",
+    "pluralName": "lost-found-items",
+    "displayName": "Lost & Found Item",
+    "description": "Ztráty a nálezy"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "item_name": {
+      "type": "string",
+      "required": true,
+      "description": "Název předmětu"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis předmětu"
+    },
+    "location": {
+      "type": "string",
+      "required": true,
+      "description": "Místo nálezu"
+    },
+    "found_date": {
+      "type": "date",
+      "required": true,
+      "description": "Datum nálezu"
+    },
+    "found_by": {
+      "type": "string",
+      "required": true,
+      "description": "Kdo našel"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["found", "stored", "returned", "claimed", "disposed"],
+      "default": "found",
+      "description": "Status"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategorie (Osobní věci, Elektronika, Šperky, Hračky, atd.)"
+    },
+    "guest_contact": {
+      "type": "string",
+      "description": "Kontakt na hosta"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"],
+      "description": "Fotka předmětu"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}
+=== src/api/setting/content-types/setting/schema.json ===
+{
+  "kind": "singleType",
+  "collectionName": "settings",
+  "info": {
+    "singularName": "setting",
+    "pluralName": "settings",
+    "displayName": "Settings",
+    "description": "Nastavení penzionu"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pension_name": {
+      "type": "string",
+      "required": true,
+      "description": "Název penzionu"
+    },
+    "address": {
+      "type": "text",
+      "description": "Adresa penzionu"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon"
+    },
+    "email": {
+      "type": "email",
+      "description": "Email"
+    },
+    "check_in_time": {
+      "type": "string",
+      "default": "14:00",
+      "description": "Čas příjezdu"
+    },
+    "check_out_time": {
+      "type": "string",
+      "default": "10:00",
+      "description": "Čas odjezdu"
+    },
+    "booking_rules": {
+      "type": "richtext",
+      "description": "Pravidla rezervace"
+    },
+    "cancellation_policy": {
+      "type": "richtext",
+      "description": "Storno podmínky"
+    },
+    "deposit_percentage": {
+      "type": "integer",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "description": "Procento zálohy"
+    }
+  }
+}
+=== src/api/employee/content-types/employee/schema.json ===
+{
+  "kind": "collectionType",
+  "collectionName": "employees",
+  "info": {
+    "singularName": "employee",
+    "pluralName": "employees",
+    "displayName": "Employee",
+    "description": "Zaměstnanci"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno"
+    },
+    "last_name": {
+      "type": "string",
+      "required": true,
+      "description": "Příjmení"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true,
+      "description": "Email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "description": "Pozice"
+    },
+    "department": {
+      "type": "string",
+      "description": "Oddělení"
+    },
+    "hire_date": {
+      "type": "date",
+      "description": "Datum nástupu"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "on_leave", "inactive"],
+      "default": "active",
+      "description": "Status"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}
+
+## Components:

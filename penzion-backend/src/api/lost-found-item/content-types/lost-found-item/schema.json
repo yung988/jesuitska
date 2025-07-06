@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lost_found_items",
+  "info": {
+    "singularName": "lost-found-item",
+    "pluralName": "lost-found-items",
+    "displayName": "Lost & Found Item",
+    "description": "Ztráty a nálezy"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "item_name": {
+      "type": "string",
+      "required": true,
+      "description": "Název předmětu"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis předmětu"
+    },
+    "location": {
+      "type": "string",
+      "required": true,
+      "description": "Místo nálezu"
+    },
+    "found_date": {
+      "type": "date",
+      "required": true,
+      "description": "Datum nálezu"
+    },
+    "found_by": {
+      "type": "string",
+      "required": true,
+      "description": "Kdo našel"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["found", "stored", "returned", "claimed", "disposed"],
+      "default": "found",
+      "description": "Status"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategorie (Osobní věci, Elektronika, Šperky, Hračky, atd.)"
+    },
+    "guest_contact": {
+      "type": "string",
+      "description": "Kontakt na hosta"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"],
+      "description": "Fotka předmětu"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "concierge_services",
+  "info": {
+    "singularName": "concierge-service",
+    "pluralName": "concierge-services",
+    "displayName": "Concierge Service",
+    "description": "Doporučené služby"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Název služby"
+    },
+    "category": {
+      "type": "string",
+      "required": true,
+      "description": "Kategorie"
+    },
+    "rating": {
+      "type": "decimal",
+      "description": "Hodnocení"
+    },
+    "distance": {
+      "type": "string",
+      "description": "Vzdálenost"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon"
+    },
+    "description": {
+      "type": "text",
+      "description": "Popis"
+    }
+  }
+}

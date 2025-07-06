@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guests",
+  "info": {
+    "singularName": "guest",
+    "pluralName": "guests",
+    "displayName": "Guest",
+    "description": "Hosté penzionu"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true,
+      "description": "Email hosta"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon hosta"
+    },
+    "address": {
+      "type": "text",
+      "description": "Adresa hosta"
+    },
+    "notes": {
+      "type": "text",
+      "description": "Poznámky - preference, alergie apod."
+    },
+    "total_stays": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "description": "Celkový počet pobytů"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "guest"
+    }
+  }
+}

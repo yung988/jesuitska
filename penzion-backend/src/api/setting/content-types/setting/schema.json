@@ -1,0 +1,58 @@
+{
+  "kind": "singleType",
+  "collectionName": "settings",
+  "info": {
+    "singularName": "setting",
+    "pluralName": "settings",
+    "displayName": "Settings",
+    "description": "Nastavení penzionu"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pension_name": {
+      "type": "string",
+      "required": true,
+      "description": "Název penzionu"
+    },
+    "address": {
+      "type": "text",
+      "description": "Adresa penzionu"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon"
+    },
+    "email": {
+      "type": "email",
+      "description": "Email"
+    },
+    "check_in_time": {
+      "type": "string",
+      "default": "14:00",
+      "description": "Čas příjezdu"
+    },
+    "check_out_time": {
+      "type": "string",
+      "default": "10:00",
+      "description": "Čas odjezdu"
+    },
+    "booking_rules": {
+      "type": "richtext",
+      "description": "Pravidla rezervace"
+    },
+    "cancellation_policy": {
+      "type": "richtext",
+      "description": "Storno podmínky"
+    },
+    "deposit_percentage": {
+      "type": "integer",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "description": "Procento zálohy"
+    }
+  }
+}

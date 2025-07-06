@@ -1,0 +1,110 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "singularName": "booking",
+    "pluralName": "bookings",
+    "displayName": "Booking",
+    "description": "Rezervace pokojů"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "booking_id": {
+      "type": "string",
+      "unique": true,
+      "description": "Automaticky generované ID rezervace (BK001, BK002...)"
+    },
+    "guest_name": {
+      "type": "string",
+      "required": true,
+      "description": "Jméno hosta"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "description": "Email hosta"
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "description": "Telefon hosta"
+    },
+    "check_in": {
+      "type": "date",
+      "required": true,
+      "description": "Datum příjezdu"
+    },
+    "check_out": {
+      "type": "date",
+      "required": true,
+      "description": "Datum odjezdu"
+    },
+    "guests": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "description": "Počet hostů"
+    },
+    "total_price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "description": "Celková cena"
+    },
+    "paid_amount": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "description": "Zaplacená částka"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "confirmed", "checked-in", "checked-out", "cancelled"],
+      "default": "pending",
+      "description": "Status rezervace"
+    },
+    "payment_status": {
+      "type": "enumeration",
+      "enum": ["paid", "pending", "partial", "refunded"],
+      "default": "pending",
+      "description": "Status platby"
+    },
+    "source": {
+      "type": "string",
+      "description": "Zdroj rezervace (Booking.com, Airbnb, Přímá rezervace, atd.)"
+    },
+    "room": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::room.room",
+      "inversedBy": "bookings"
+    },
+    "message": {
+      "type": "text",
+      "description": "Zpráva od hosta"
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": ["cash", "card", "bank_transfer", "online"],
+      "description": "Způsob platby"
+    },
+    "created_by_admin": {
+      "type": "boolean",
+      "default": false,
+      "description": "Vytvořeno adminem?"
+    },
+    "special_requests": {
+      "type": "text",
+      "description": "Speciální požadavky"
+    },
+    "guest": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guest.guest",
+      "inversedBy": "bookings"
+    }
+  }
+}

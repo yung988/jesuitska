@@ -1,0 +1,16 @@
+{
+  "name": "pension-jesuitska-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"bgBlue,bgGreen\" \"pnpm run dev:backend\" \"pnpm run dev:frontend\"",
+    "dev:backend": "cd penzion-backend && pnpm run develop",
+    "dev:frontend": "cd ../Projects/jesuitska/pension-jesuitska-new && pnpm run dev",
+    "install:all": "pnpm run install:backend && pnpm run install:frontend",
+    "install:backend": "cd penzion-backend && pnpm install",
+    "install:frontend": "cd ../Projects/jesuitska/pension-jesuitska-new && pnpm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
